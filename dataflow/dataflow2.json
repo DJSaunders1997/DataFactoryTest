@@ -1,0 +1,39 @@
+{
+	"name": "dataflow2",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "CampaignDataset",
+						"type": "DatasetReference"
+					},
+					"name": "Campaignfromdataflow"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "Select1"
+				},
+				{
+					"name": "Filter1"
+				},
+				{
+					"name": "DerivedColumn1"
+				},
+				{
+					"name": "Window1"
+				},
+				{
+					"name": "Aggregate1"
+				},
+				{
+					"name": "AlterRow1"
+				}
+			],
+			"script": "source(output(\n\t\tquote_number as string,\n\t\ttimestamp as string,\n\t\tchannel as string,\n\t\tregion as string,\n\t\tdateofbirth as string,\n\t\tlicense_years as string,\n\t\tnum_convictions as string,\n\t\tnum_fault_claims as string,\n\t\tmake as string,\n\t\tmodel as string,\n\t\tmanfyear as string,\n\t\tpurchaseyear as string,\n\t\tfuel_type as string,\n\t\ttransmission_type as string,\n\t\tpayment_plan as string,\n\t\tnature_of_use as string,\n\t\tovernightparking_loc as string,\n\t\tpolicy_start_date as string,\n\t\tpremium as string,\n\t\tconverted as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> Campaignfromdataflow\nCampaignfromdataflow select(mapColumn(\n\t\tnumberofquote = quote_number,\n\t\ttimestamp,\n\t\tchannel,\n\t\tregion,\n\t\tdateofbirth,\n\t\tlicense_years,\n\t\tnum_convictions,\n\t\tnum_fault_claims,\n\t\tmake,\n\t\tmodel,\n\t\tmanfyear,\n\t\tpurchaseyear,\n\t\tfuel_type,\n\t\ttransmission_type,\n\t\tpayment_plan,\n\t\tnature_of_use,\n\t\tpolicy_start_date,\n\t\tpremium,\n\t\tconverted\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select1\nSelect1 filter(toInteger(purchaseyear) > 2015) ~> Filter1\nFilter1 derive(purchaseyeartimes2 = toInteger(purchaseyear) * 2) ~> DerivedColumn1\nDerivedColumn1 window(over(region),\n\tdesc(dateofbirth, true),\n\tOldestInRegion = rank()) ~> Window1\nWindow1 aggregate(groupBy(region),\n\tnumberofquotes = count(),\n\t\toldestcar = first(manfyear),\n\t\tnewestcar = last(manfyear)) ~> Aggregate1\nAggregate1 alterRow(upsertIf(true())) ~> AlterRow1"
+		}
+	}
+}
