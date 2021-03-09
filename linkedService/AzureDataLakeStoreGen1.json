@@ -1,0 +1,13 @@
+{
+	"name": "AzureDataLakeStoreGen1",
+	"properties": {
+		"annotations": [],
+		"type": "AzureDataLakeStore",
+		"typeProperties": {
+			"dataLakeStoreUri": "https://djsdatalake.azuredatalakestore.net/webhdfs/v1",
+			"tenant": "cc5ed026-a879-4ce9-b38e-e37f78520154",
+			"subscriptionId": "cc99cf2c-31f1-4f06-92a4-91d733204dc8",
+			"resourceGroupName": "DFTest"
+		}
+	}
+}
