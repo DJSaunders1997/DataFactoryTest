@@ -1,9 +1,9 @@
 {
-	"name": "MoviePipeline",
+	"name": "CampaignPipeline",
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy Movie Data",
+				"name": "Copy Campaign Data",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -49,13 +49,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "DelimitedText1",
+						"referenceName": "CampaignDataset",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "DelimitedText2",
+						"referenceName": "CampaignOutput",
 						"type": "DatasetReference"
 					}
 				]
