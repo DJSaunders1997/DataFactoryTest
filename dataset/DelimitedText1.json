@@ -1,0 +1,104 @@
+{
+	"name": "DelimitedText1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorageLinkedService",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "movies.csv",
+				"container": "blobcontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "quote_number",
+				"type": "String"
+			},
+			{
+				"name": "timestamp",
+				"type": "String"
+			},
+			{
+				"name": "channel",
+				"type": "String"
+			},
+			{
+				"name": "region",
+				"type": "String"
+			},
+			{
+				"name": "dateofbirth",
+				"type": "String"
+			},
+			{
+				"name": "license_years",
+				"type": "String"
+			},
+			{
+				"name": "num_convictions",
+				"type": "String"
+			},
+			{
+				"name": "num_fault_claims",
+				"type": "String"
+			},
+			{
+				"name": "make",
+				"type": "String"
+			},
+			{
+				"name": "model",
+				"type": "String"
+			},
+			{
+				"name": "manfyear",
+				"type": "String"
+			},
+			{
+				"name": "purchaseyear",
+				"type": "String"
+			},
+			{
+				"name": "fuel_type",
+				"type": "String"
+			},
+			{
+				"name": "transmission_type",
+				"type": "String"
+			},
+			{
+				"name": "payment_plan",
+				"type": "String"
+			},
+			{
+				"name": "nature_of_use",
+				"type": "String"
+			},
+			{
+				"name": "overnightparking_loc",
+				"type": "String"
+			},
+			{
+				"name": "policy_start_date",
+				"type": "String"
+			},
+			{
+				"name": "premium",
+				"type": "String"
+			},
+			{
+				"name": "converted",
+				"type": "String"
+			}
+		]
+	}
+}
