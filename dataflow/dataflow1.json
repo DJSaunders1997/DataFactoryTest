@@ -1,0 +1,20 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "CampaignDataset",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"script": "source(output(\n\t\tquote_number as string,\n\t\ttimestamp as string,\n\t\tchannel as string,\n\t\tregion as string,\n\t\tdateofbirth as string,\n\t\tlicense_years as string,\n\t\tnum_convictions as string,\n\t\tnum_fault_claims as string,\n\t\tmake as string,\n\t\tmodel as string,\n\t\tmanfyear as string,\n\t\tpurchaseyear as string,\n\t\tfuel_type as string,\n\t\ttransmission_type as string,\n\t\tpayment_plan as string,\n\t\tnature_of_use as string,\n\t\tovernightparking_loc as string,\n\t\tpolicy_start_date as string,\n\t\tpremium as string,\n\t\tconverted as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1"
+		}
+	}
+}
